@@ -1,3 +1,21 @@
+// garantir que todas as vagas tenham mesma estrutura
+class Vaga{
+    constructor (empresa, cargo, requisitos, salario, modalidade){
+        this.empresa = empresa;
+        this.cargo = cargo;
+        this.requisitos = requisitos;
+        this.salario = salario;
+        this.modalidade = modalidade;
+    }
+};
+
+const listaDeVagas = [
+    new Vaga ("TechStart", "Desenvolvedor Front-End Júnior", ["JavaScript", "Github", "Lógica de Programação", "TypeScript"], 2800, "Remoto"),
+    new Vaga ("CodeLab", "Estágio Front-End", ["JavaScript", "React", "Github", "Kanban"], 1800, "Híbrido"),
+    new Vaga ("WebSolutions", "Programador JavaScript Júnior", ["JavaScript", "Arrays", "Objeto", "Funções", "Html"], 3000, "Presencial")
+];
+
+
 const candidato = {
     nome: "Júlia",
     area: "Front-End",
@@ -5,37 +23,12 @@ const candidato = {
     experienciaMeses: 4 
 };
 
-const vaga = [
-    {id:1,
-    empresa: "TechStart",
-    cargo: "Desenvolvedor Front-End Júnior",
-    requisitos: ["JavaScript", "Github", "Lógica de Programação", "TypeScript"],
-    salario: 2800,
-    modalidade: "Remoto"
-    },
-    {id:2,
-    empresa: "CodeLab",
-    cargo: "Estágio Front-End",
-    requisitos: ["JavaScript", "React", "Github", "Kanban"],
-    salario: 1800,
-    modalidade: "Híbrido"
-    },
-    {id:3,
-    empresa: "WebSolutions",
-    cargo: "Programador JavaScript Júnior",
-    requisitos: ["JavaScript", "Arrays", "Objeto", "Funções", "Html"],
-    salario: 3000,
-    modalidade: "Presencial"
-    }
-];
 
 let habilidadesCandidato = candidato.habilidades;
-
 let resumoVagas = [];
-
 let todasFaltantes = [];
 
-vaga.forEach((itemVaga) => {
+listaDeVagas.forEach((itemVaga) => {
     let precisa = itemVaga.requisitos;
     
     let possui = precisa.filter ((item) => {
@@ -53,7 +46,7 @@ vaga.forEach((itemVaga) => {
 
     console.log (`Empresa: ${itemVaga.empresa}`);
     console.log (`Cargo: ${itemVaga.cargo}`);
-    console.log (`Compatibilidade: ${Math.round(porcentagem)}%`);
+    console.log (`Compatibilidade: ${porcentagem}%`);
     console.log (`Habilidades que deram match: ${possui.join(", ")}`);
     
     if (falta.length === 0) {
@@ -78,7 +71,7 @@ vaga.forEach((itemVaga) => {
         empresa: itemVaga.empresa,
         cargo: itemVaga.cargo,
         compatibilidade: porcentagem
-    })
+    });
 
     todasFaltantes.push(...falta);
 
@@ -96,9 +89,9 @@ console.log ("Vaga mais compatível:");
 console.log (`${vagaMaisCompativel.empresa} - ${vagaMaisCompativel.cargo}`);
 console.log (`Compatibilidade: ${vagaMaisCompativel.compatibilidade}%`);
 
+let habilidadesSemRepeticao = [...new Set(todasFaltantes)]; //evita mostrar duplicado
+
 console.log ("Recomendação de estudo:");
-console.log (`Priorize estudar ${todasFaltantes.join(", ")}, pois esse conteúdos aparecem nas vagas analisadas.`);
+console.log (`Priorize estudar ${habilidadesSemRepeticao.join(", ")}, pois esses conteúdos aparecem nas vagas analisadas.`);
 
 
-
-//teste 
