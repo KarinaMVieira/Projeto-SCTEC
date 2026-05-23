@@ -19,14 +19,12 @@ const listaDeVagas = [
     new Vaga ("WebSolutions", "Programador JavaScript Júnior", ["JavaScript", "Arrays", "Objeto", "Funções", "Html"], 3000, "Presencial")
 ];
 
-
 const candidato = {
     nome: "Júlia",
     area: "Front-End",
     habilidades: ["JavaScript", "Github", "Lógica de Programação"],
     experienciaMeses: 4 
 };
-
 
 let habilidadesCandidato = candidato.habilidades;
 let resumoVagas = [];
