@@ -7,6 +7,10 @@ class Vaga{
         this.salario = salario;
         this.modalidade = modalidade;
     }
+
+    exibirResumo () {
+        return `${this.cargo} na empresa ${this.empresa}`;
+    }
 };
 
 const listaDeVagas = [
